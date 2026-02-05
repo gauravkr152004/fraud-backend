@@ -19,7 +19,7 @@ app.post("/analyze-call", async (req, res) => {
     return res.status(400).json({ error: "Transcript is required" });
   }
 
-  const command = `python ml/predict.py "${transcript}"`;
+  const command = `python3 ml/predict.py "${transcript}"`;
 
   exec(command, async (error, stdout) => {
     if (error) {
@@ -50,7 +50,7 @@ app.post("/analyze-call", async (req, res) => {
 app.post("/analyze-audio", upload.single("file"), async (req, res) => {
   const transcript = "This is a dummy transcript from audio";
 
-  const command = `python ml/predict.py "${transcript}"`;
+  const command = `python3 ml/predict.py "${transcript}"`;
 
   exec(command, async (error, stdout) => {
     const [status, risk_level, probability] = stdout.trim().split("|");
