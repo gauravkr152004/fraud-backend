@@ -45,6 +45,10 @@ app.post("/analyze-call", async (req, res) => {
   });
 });
 
+app.get("/analyze-call", (req, res) => {
+  res.send("Analyze Call API is working. Use POST request.");
+});
+
 
 // ---------------- AUDIO (PROTOTYPE) ----------------
 app.post("/analyze-audio", upload.single("file"), async (req, res) => {
@@ -70,6 +74,19 @@ app.post("/analyze-audio", upload.single("file"), async (req, res) => {
       risk_level,
       probability: Number(probability)
     });
+  });
+});
+
+app.get("/analyze-audio", (req, res) => {
+  res.send("Analyze Audio API is working. Use POST with file upload.");
+});
+
+
+
+app.get("/", (req, res) => {
+  res.json({
+    status: "Backend is running",
+    service: "AI Call Fraud Analyzer API"
   });
 });
 
